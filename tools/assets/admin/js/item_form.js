@@ -18,6 +18,13 @@ $(function() {
 			}
 		});
 
+		$('.csv_download').on('click', function(e) {
+			if (confirm('CSVをダウンロードしますか？')) {
+				$('#download').submit();
+			} else {
+				return false;
+			}
+		});
 
 	});
 
