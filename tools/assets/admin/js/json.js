@@ -3,12 +3,10 @@ $(function(){
 	var setArea = $('#loadarea'),
 	defaultNum = 5,
     loadNum = 5, // 読み込む個数
-    loadTxt = '<img src="" alt="Now Loading...">', // Loading中の表示
+    loadTxt = '<img src="/assets/admin/img/gif-load.gif" alt="Now Loading..." width="30" height="30">Now Loading...', // Loading中の表示
     fadeSpeed = 500; // フェードスピード
 
 	window.onload = function(){
-
-		setArea.after('<div id="nowLoading">' + loadTxt + '</div>');
 
 		$.ajax({
 	        url: './json/json_viwe',
@@ -48,12 +46,12 @@ $(function(){
 							+ data[i]['item_details'] + '</td><td>'
 							+ data[i]['item_expire_seconds'] + '秒</td><td>'
 							+ data[i]['item_point_up_rate'] + '%</td><td>'
-							+ '<img src="/assets/admin/img/photo/'
-							+ data[i]['photo_saved_as'] + '" width="85" height="85"></td><td>'
+							+'<img class="lazyload" src="/assets/admin/img/gif-load.gif" data-src="/assets/admin/img/photo/' + data[i]['photo_saved_as'] + '" width="85" height="85"></td><td>'
 							+ data[i]['upd_date'] + '</td>';
 
 						//trエレメントをtbody内に追加
 						tbody.appendChild(tr);
+						$("img.lazyload").lazyload() ;
 	                }
 	              } else {
 	                for (var i=0; i<defaultNum; i++) {
@@ -84,12 +82,12 @@ $(function(){
 							+ data[i]['item_details'] + '</td><td>'
 							+ data[i]['item_expire_seconds'] + '秒</td><td>'
 							+ data[i]['item_point_up_rate'] + '%</td><td>'
-							+ '<img src="/assets/admin/img/photo/' + data[i]['photo_saved_as']
-							+ '" width="85" height="85"></td><td>'
+							+'<img class="lazyload" src="/assets/admin/img/gif-load.gif" data-src="/assets/admin/img/photo/' + data[i]['photo_saved_as'] + '" width="85" height="85"></td><td>'
 							+ data[i]['upd_date'] + '</td>';
-
 						//trエレメントをtbody内に追加
 						tbody.appendChild(tr);
+						$("img.lazyload").lazyload() ;
+
 	                }
 	              }
 	            }
@@ -166,12 +164,12 @@ $(function(){
                     						+ data[v]['item_details'] + '</td><td>'
                     						+ data[v]['item_expire_seconds'] + '秒</td><td>'
                     						+ data[v]['item_point_up_rate'] + '%</td><td>'
-                    						+ '<img src="/assets/admin/img/photo/' + data[v]['photo_saved_as']
-                    						+ '" width="85" height="85"></td><td>'
+                    						+'<img class="lazyload" src="/assets/admin/img/gif-load.gif" data-src="/assets/admin/img/photo/' + data[v]['photo_saved_as'] + '" width="85" height="85"></td><td>'
                     						+ data[v]['upd_date'] + '</td>';
 
                     					//trエレメントをtbody内に追加
                     					tbody.appendChild(tr);
+                    					$("img.lazyload").lazyload() ;
                                     }
                                 } else if(loadNum >= setAdj){
                                     for (var i=0; i<setAdj; i++) {
@@ -203,12 +201,12 @@ $(function(){
                     						+ data[v]['item_details'] + '</td><td>'
                     						+ data[v]['item_expire_seconds'] + '秒</td><td>'
                     						+ data[v]['item_point_up_rate'] + '%</td><td>'
-                    						+ '<img src="/assets/admin/img/photo/' + data[v]['photo_saved_as']
-                    						+ '" width="85" height="85"></td><td>'
+                    						+'<img class="lazyload" src="/assets/admin/img/gif-load.gif" data-src="/assets/admin/img/photo/' + data[v]['photo_saved_as'] + '" width="85" height="85"></td><td>'
                     						+ data[v]['upd_date'] + '</td>';
 
                     					//trエレメントをtbody内に追加
                     					tbody.appendChild(tr);
+                    					$("img.lazyload").lazyload() ;
                                     }
                                 }
                             } else if(loadItemLength == dataLengh){
