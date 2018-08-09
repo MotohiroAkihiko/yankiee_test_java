@@ -1,12 +1,11 @@
 $(function(){
-
 	var setArea = $('#loadarea'),
 	defaultNum = 5,
     loadNum = 5, // 読み込む個数
     loadTxt = '<img src="/assets/admin/img/gif-load.gif" alt="Now Loading..." width="30" height="30">Now Loading...', // Loading中の表示
     fadeSpeed = 500; // フェードスピード
 
-	window.onload = function(){
+	$(window).on('load',function(){
 
 		$.ajax({
 	        url: './json/json_viwe',
@@ -51,7 +50,6 @@ $(function(){
 
 						//trエレメントをtbody内に追加
 						tbody.appendChild(tr);
-						$("img.lazyload").lazyload() ;
 	                }
 	              } else {
 	                for (var i=0; i<defaultNum; i++) {
@@ -86,10 +84,9 @@ $(function(){
 							+ data[i]['upd_date'] + '</td>';
 						//trエレメントをtbody内に追加
 						tbody.appendChild(tr);
-						$("img.lazyload").lazyload() ;
-
 	                }
 	              }
+
 	            }
 	          }else{
 	            $('<p>アイテムが登録されてません。</p>').appendTo(setArea).css({opacity:'0'}).animate({opacity:'1'},fadeSpeed);
@@ -99,12 +96,13 @@ $(function(){
 	          $('#nowLoading').each(function(){
 	            $(this).remove();
 	          });
+	          $('img.lazyload').lazyload();
 	          return false;
 	        } //complete
 	      });
-	}
+	});
 
-    $(window).load(function(){
+	$(window).on('load',function(){
         var loadWinHeight = $(window).height(),loadDocHeight = $(document).height();
         if(loadWinHeight >= loadDocHeight){
             scrollLoad();
@@ -169,7 +167,6 @@ $(function(){
 
                     					//trエレメントをtbody内に追加
                     					tbody.appendChild(tr);
-                    					$("img.lazyload").lazyload() ;
                                     }
                                 } else if(loadNum >= setAdj){
                                     for (var i=0; i<setAdj; i++) {
@@ -206,7 +203,6 @@ $(function(){
 
                     					//trエレメントをtbody内に追加
                     					tbody.appendChild(tr);
-                    					$("img.lazyload").lazyload() ;
                                     }
                                 }
                             } else if(loadItemLength == dataLengh){
@@ -215,6 +211,7 @@ $(function(){
                         } else {
                             return false;
                         }
+
                     },
                     complete : function(){
                         $('#nowLoading').each(function(){
@@ -223,6 +220,7 @@ $(function(){
                         setTimeout(function(){
                             loadFlg = true;
                         },500);
+                        $('img.lazyload').lazyload();
                         return false;
                     }
                 });
